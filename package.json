@@ -1,0 +1,16 @@
+{
+  "name": "Maxwell",
+  "version": "0.1.0",
+  "main": "app.js",
+  "babel": {
+    "presets": ["react"]
+  },
+  "dependencies": {
+    "babel-preset-react": "^6.5.0",
+    "babel-register": "^6.5.2",
+    "material-ui": "^0.14.4",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-tap-event-plugin": "^0.2.2"
+  }
+}
