@@ -12,20 +12,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-//class TopBar extends React.Component {
-//  constructor(props) {
-//    super(props);
-//  }
-
-//  render() {
-//    <TopBar
-//      title="Maxwell"
-//      iconClassNameRight="muidocs-icon-navigation-expand-more"
- //   />
-//  }
-//}
-
-class NavBar extends React.Component {
+class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {open: false};
@@ -33,6 +20,7 @@ class NavBar extends React.Component {
     // Handle binding in constructor instead of defining functions with arrow syntax
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
   }
 
   handleToggle() {
@@ -43,13 +31,18 @@ class NavBar extends React.Component {
     this.setState({open: false});
   }
 
+  handleOpen() {
+    this.setState({open: true});
+  }
+
   render() {
     return (
       <div>
-        <RaisedButton
-          label="Open Nav"
-          onTouchTap={this.handleToggle}
+        <AppBar
+          onLeftIconButtonTouchTap={this.handleToggle}
+          title="Maxwell"
         />
+ 
         <LeftNav
           docked={false}
           width={200}
@@ -65,4 +58,4 @@ class NavBar extends React.Component {
   }
 }
 
-ReactDOM.render(<NavBar />, document.getElementById('content'));
+ReactDOM.render(<Navigation />, document.getElementById('navigation'));
