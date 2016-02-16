@@ -1,4 +1,5 @@
 // main.js (renderer process)
-// Launch point for .jsx
+
+// Enable ES2015 and JSX transpile
 require('./node_modules/babel-register')
 require('./main.jsx')
