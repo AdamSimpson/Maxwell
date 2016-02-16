@@ -5,6 +5,10 @@ import LeftNav from 'material-ui/lib/left-nav';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import RaisedButton from 'material-ui/lib/raised-button';
 
+import DarkTheme from './dark_theme.js';
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import ThemeDecorator from 'material-ui/lib/styles/theme-decorator';
+
 // Needed for onTouchTap
 // Can go away when react 1.0 release
 // Check this repo:
@@ -12,6 +16,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+@ThemeDecorator(ThemeManager.getMuiTheme(DarkTheme))
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
