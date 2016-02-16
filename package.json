@@ -22,6 +22,7 @@
     "babel-preset-stage-1": "*",
     "babel-register": "*",
     "material-ui": "*",
+    "node-hue-api": "^2.1.1",
     "react": "*",
     "react-dom": "*",
     "react-tap-event-plugin": "*"
