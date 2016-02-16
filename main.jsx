@@ -1,24 +1,14 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import AppBar from 'material-ui/lib/app-bar';
 
-var Timer = React.createClass({
-  getInitialState: function() {
-    return {secondsElapsed: 0};
-  },
-  tick: function() {
-    this.setState({secondsElapsed: this.state.secondsElapsed + 1});
-  },
-  componentDidMount: function() {
-    this.interval = setInterval(this.tick, 1000);
-  },
-  componentWillUnmount: function() {
-    clearInterval(this.interval);
-  },
-  render: function() {
-    return (
-      <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
-    );
-  }
-});
+const AppBarExampleIcon = () => (
+  <AppBar
+    title="Maxwell"
+    iconClassNameRight="muidocs-icon-navigation-expand-more"
+  />
+);
 
-ReactDOM.render(<Timer />, document.getElementById('content'));
+export default AppBarExampleIcon;
+
+ReactDOM.render(<AppBarExampleIcon />, document.getElementById('content'));
