@@ -1,66 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppBar from 'material-ui/lib/app-bar';
-import LeftNav from 'material-ui/lib/left-nav';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import RaisedButton from 'material-ui/lib/raised-button';
 
-import DarkTheme from './dark_theme.js';
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import ThemeDecorator from 'material-ui/lib/styles/theme-decorator';
+import { Router, Route, hashHistory } from 'react-router';
 
-// Needed for onTouchTap
-// Can go away when react 1.0 release
-// Check this repo:
-// https://github.com/zilverline/react-tap-event-plugin
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
+import Navigation from './components/navigation.jsx'
+import Home from './components/home.jsx';
+import Lights from './components/lights.jsx';
+import Bridges from './components/bridges.jsx';
 
-@ThemeDecorator(ThemeManager.getMuiTheme(DarkTheme))
-class Navigation extends React.Component {
+class MainApp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {open: false};
-
-    // Handle binding in constructor instead of defining functions with arrow syntax
-    this.handleToggle = this.handleToggle.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
   }
 
-  handleToggle() {
-    this.setState({open: !this.state.open})
-  }
-
-  handleClose() {
-    this.setState({open: false});
-  }
-
-  handleOpen() {
-    this.setState({open: true});
-  }
-
+  // Render content portion using react-router
   render() {
     return (
-      <div>
-        <AppBar
-          onLeftIconButtonTouchTap={this.handleToggle}
-          title="Maxwell"
-        />
- 
-        <LeftNav
-          docked={false}
-          width={200}
-          open={this.state.open}
-          onRequestChange={open => this.setState({open})}
-        >
-          <MenuItem onTouchTap={this.handleClose}>House</MenuItem>
-          <MenuItem onTouchTap={this.handleClose}>Lights</MenuItem>
-          <MenuItem onTouchTap={this.handleClose}>Bridges</MenuItem>
-        </LeftNav>
-      </div>
-    );
+      <Router history={hashHistory}>
+        <Route path="/" component={Navigation}>
+          <Route path="/home"    component={Home} />
+          <Route path="/lights"  component={Lights} />
+          <Route path="/bridges" component={Bridges} />
+        </Route>
+      </Router>
+    )
   }
 }
 
-ReactDOM.render(<Navigation />, document.getElementById('navigation'));
+// Render entire application
+ReactDOM.render(<MainApp/>, document.getElementById('main_app'));
