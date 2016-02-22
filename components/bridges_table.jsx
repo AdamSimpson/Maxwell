@@ -18,7 +18,7 @@ const bridgesTable = (bridges) => (
        {bridges.ids.map((id, index) =>
           <TableRow key={index}>
             <TableRowColumn>{id}</TableRowColumn>
-            <TableRowColumn>{bridges.ip_addresses[id]}</TableRowColumn>
+            <TableRowColumn>{bridges.ips[id]}</TableRowColumn>
           </TableRow>
         )}
     </TableBody>

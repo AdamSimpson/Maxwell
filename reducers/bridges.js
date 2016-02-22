@@ -17,6 +17,7 @@ import {FETCH_BRIDGES, FETCH_BRIDGES_SUCCESS, FETCH_BRIDGES_FAILURE} from '../ac
 const initial_state = {
                         is_fetching: false,
                         ids: [],
+                        ips: {},
                         usernames: {},
                         statuses: {}
                       };
@@ -26,7 +27,8 @@ export default function Bridges(state = initial_state, action) {
     case FETCH_BRIDGES:
       return {...state, is_fetching: true}
     case FETCH_BRIDGES_SUCCESS:
-      return {...state, ids: action.bridge_info.map((bridge) => { return bridge.id } ),
+      return {...state, ids: action.bridge_info.map((bridge) => bridge.id),
+                        ips: action.bridge_info.reduce((map, bridge) => { map[bridge.id] = bridge.ipaddress; return map}, {}),
                         is_fetching: false
       };
     case FETCH_BRIDGES_FAILURE:
