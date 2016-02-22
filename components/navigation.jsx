@@ -9,7 +9,7 @@ import HomeIcon from 'material-ui/lib/svg-icons/action/home';
 import LightIcon from 'material-ui/lib/svg-icons/action/lightbulb-outline';
 import RouterIcon from 'material-ui/lib/svg-icons/hardware/router';
 
-import DarkTheme from './dark_theme.js';
+//import DarkTheme from './dark_theme.js';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import ThemeDecorator from 'material-ui/lib/styles/theme-decorator';
 
@@ -20,37 +20,31 @@ import ThemeDecorator from 'material-ui/lib/styles/theme-decorator';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-@ThemeDecorator(ThemeManager.getMuiTheme(DarkTheme))
+//@ThemeDecorator(ThemeManager.getMuiTheme(DarkTheme))
 class Navigation extends React.Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {open: false};
-
-    // Handle binding in constructor instead of defining functions with arrow syntax
-    this.handleToggle = this.handleToggle.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleNavChange = this.handleNavChange.bind(this);
   }
 
   static contextTypes = {
     router: React.PropTypes.object.isRequired
   };
 
-  handleToggle() {
+  handleToggle = () => {
     this.setState({open: !this.state.open})
   }
 
-  handleClose() {
+  handleClose = () => {
     this.setState({open: false});
   }
 
-  handleOpen() {
+  handleOpen = () => {
     this.setState({open: true});
   }
 
-  handleNavChange(path, event) {
+  handleNavChange = (path, event) => {
     // Push path to router to cause component to load
     this.context.router.push(path);
 

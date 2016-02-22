@@ -6,8 +6,13 @@ import { Router, Route, hashHistory } from 'react-router';
 import Navigation from './components/navigation.jsx'
 import Home from './components/home.jsx';
 import Lights from './components/lights.jsx';
-import Bridges from './components/bridges.jsx';
+import Bridges from './containers/bridges.jsx';
 
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rootReducer from './reducers/main.js'
+
+// Doesn't need to be a class, can just return render() content I think
 class MainApp extends React.Component {
   constructor(props) {
     super(props);
@@ -28,4 +33,10 @@ class MainApp extends React.Component {
 }
 
 // Render entire application
-ReactDOM.render(<MainApp/>, document.getElementById('main_app'));
+let store = createStore(rootReducer);
+
+// Render entire application
+ReactDOM.render(<Provider store={store}>
+                  <MainApp/>
+                </Provider>
+                , document.getElementById('main_app'));
